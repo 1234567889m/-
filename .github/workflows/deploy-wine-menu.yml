@@ -1,0 +1,49 @@
+name: Deploy Wine Menu App
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - 'wine-menu-app/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: wine-menu-app/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: wine-menu-app
+
+      - name: Build
+        run: npm run build
+        working-directory: wine-menu-app
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: wine-menu-app/dist
+
+      - uses: actions/deploy-pages@v4
+        id: deployment
