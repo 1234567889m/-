@@ -241,3 +241,83 @@ body{
 
 /* ── Misc ── */
 .empty{text-align:center;padding:60px 20px;color:rgba(255,255,255,.38);font-size:15px;line-height:2.2}
+
+/* ── Menu top controls ── */
+.menu-top{display:flex;flex-direction:column;gap:12px;margin-bottom:18px}
+.btn-random{
+  align-self:flex-start;padding:10px 20px;
+  background:linear-gradient(135deg,#f59e0b,#ef4444);
+  color:#fff;border:none;border-radius:20px;font-size:14px;font-weight:700;
+  cursor:pointer;transition:.3s;box-shadow:0 4px 16px rgba(245,158,11,.4);
+  min-width:140px;
+}
+.btn-random:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 6px 20px rgba(245,158,11,.55)}
+.btn-random.rolling{
+  background:linear-gradient(135deg,#7c3aed,#db2777);
+  animation:rand-pulse .14s infinite alternate;
+}
+@keyframes rand-pulse{from{box-shadow:0 4px 18px rgba(124,58,237,.5)}to{box-shadow:0 6px 28px rgba(219,39,119,.7)}}
+
+/* ── + button & mini qty on card ── */
+.btn-plus{
+  width:32px;height:32px;border:none;border-radius:50%;
+  background:linear-gradient(135deg,#ff6b9d,#c026d3);
+  color:#fff;font-size:20px;font-weight:700;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:.2s;box-shadow:0 3px 10px rgba(255,107,157,.4);flex-shrink:0;
+}
+.btn-plus:hover{transform:scale(1.15);box-shadow:0 5px 14px rgba(255,107,157,.6)}
+.mini-qty{display:flex;align-items:center;gap:6px}
+.mini-qty button{
+  width:28px;height:28px;border:none;border-radius:50%;
+  background:rgba(255,255,255,.15);color:#fff;font-size:16px;font-weight:700;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s;
+}
+.mini-qty button:last-child{background:linear-gradient(135deg,#ff6b9d,#c026d3)}
+.mini-qty button:hover{transform:scale(1.12)}
+.mini-qty span{font-size:15px;font-weight:700;min-width:18px;text-align:center}
+
+/* ── Floating cart FAB ── */
+.cart-fab{
+  position:fixed;bottom:28px;right:20px;z-index:300;
+  background:linear-gradient(135deg,#ff6b9d,#c026d3);
+  color:#fff;border:none;border-radius:30px;padding:14px 22px;
+  font-size:15px;font-weight:700;cursor:pointer;
+  box-shadow:0 6px 25px rgba(255,107,157,.55);transition:.3s;
+}
+.cart-fab:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(255,107,157,.65)}
+
+/* ── Cart bottom drawer ── */
+.cart-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:400;
+  display:flex;align-items:flex-end;
+}
+.cart-drawer{
+  width:100%;max-height:80vh;overflow-y:auto;
+  background:linear-gradient(180deg,#2d0b5e,#1a1a4e);
+  border-radius:20px 20px 0 0;padding:16px 20px 32px;
+  box-shadow:0 -8px 40px rgba(0,0,0,.5);
+}
+.cart-handle{width:40px;height:4px;background:rgba(255,255,255,.25);border-radius:2px;margin:0 auto 14px}
+.cart-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.cart-head h3{font-size:17px;font-weight:700}
+.cart-x{background:rgba(255,255,255,.12);border:none;color:#fff;width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:14px}
+.cart-items-list{display:flex;flex-direction:column;gap:10px;max-height:220px;overflow-y:auto;padding-right:4px}
+.ci-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.ci-name{font-size:14px;font-weight:500;flex:1;margin-right:12px}
+.cart-divider{height:1px;background:rgba(255,255,255,.08);margin:14px 0}
+.cart-form{display:flex;flex-direction:column;gap:10px}
+.cart-form input,.cart-form textarea{
+  width:100%;padding:10px 13px;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);
+  border-radius:10px;color:#fff;font-size:14px;font-family:inherit;
+  transition:.2s;resize:none;
+}
+.cart-form input::placeholder,.cart-form textarea::placeholder{color:rgba(255,255,255,.28)}
+.cart-form input:focus,.cart-form textarea:focus{outline:none;border-color:rgba(255,107,157,.5)}
+
+/* ── Cart success ── */
+.cart-success{display:flex;flex-direction:column;align-items:center;gap:12px;padding:20px 0}
+.cart-success span{font-size:60px;animation:pop .5s ease}
+.cart-success h3{font-size:20px;font-weight:800}
+.cart-success p{font-size:14px;color:rgba(255,255,255,.55)}

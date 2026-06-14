@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react'
 import { CAT_STYLE } from './MenuPage'
 
-const BLANK = { name: '', category: '伏特加', price: '', description: '', steps: '', image: null }
+const BLANK = { name: '', category: '伏特加', description: '', steps: '', image: null }
 
 const compress = (file) => new Promise(resolve => {
   const reader = new FileReader()
@@ -38,7 +38,6 @@ export default function ManagePage({ wines, setWines, categories }) {
 
   const save = () => {
     if (!form.name.trim()) return alert('请输入酒品名称')
-    if (!form.price) return alert('请输入价格')
     if (editId) {
       setWines(p => p.map(w => w.id === editId ? { ...w, ...form } : w))
       setEditId(null)
@@ -75,17 +74,11 @@ export default function ManagePage({ wines, setWines, categories }) {
             <input placeholder="例：莫斯科骡子" value={form.name} onChange={e => set('name', e.target.value)} />
           </div>
 
-          <div className="fg-row">
-            <div className="fg">
-              <label>分类 *</label>
-              <select value={form.category} onChange={e => set('category', e.target.value)}>
-                {categories.map(c => <option key={c}>{c}</option>)}
-              </select>
-            </div>
-            <div className="fg">
-              <label>价格 (¥) *</label>
-              <input type="number" placeholder="68" value={form.price} onChange={e => set('price', e.target.value)} />
-            </div>
+          <div className="fg">
+            <label>分类 *</label>
+            <select value={form.category} onChange={e => set('category', e.target.value)}>
+              {categories.map(c => <option key={c}>{c}</option>)}
+            </select>
           </div>
 
           <div className="fg">
@@ -137,7 +130,6 @@ export default function ManagePage({ wines, setWines, categories }) {
                   <div className="mw-info">
                     <h4>{w.name}</h4>
                     <div className="mw-meta">
-                      <span className="price">¥{w.price}</span>
                       <span className="mw-sales">销量 {w.sales || 0}</span>
                     </div>
                   </div>

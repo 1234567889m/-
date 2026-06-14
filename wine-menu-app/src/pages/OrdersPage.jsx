@@ -24,7 +24,6 @@ export default function OrdersPage({ orders, setOrders }) {
       </div>
       {o.note && <p className="oc-note">备注: {o.note}</p>}
       <div className="oc-foot">
-        <span className="price big">¥{o.total}</span>
         <div className="oc-actions">
           {o.status === 'pending' && <button className="btn-done" onClick={() => markDone(o.id)}>✅ 完成</button>}
           <button className="btn-del" onClick={() => del(o.id)}>🗑️</button>
@@ -41,7 +40,7 @@ export default function OrdersPage({ orders, setOrders }) {
       </div>
 
       {orders.length === 0
-        ? <div className="empty">📭 还没有订单<br />客人可以通过「下订单」页面提交</div>
+        ? <div className="empty">📭 还没有订单<br />客人可以在酒单页面直接点单</div>
         : <>
             {pending.length > 0 && (
               <section>
